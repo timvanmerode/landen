@@ -1,0 +1,15 @@
+.landen li{
+    cursor:pointer;
+}
+.landen li:hover{
+    background-color: #BBD8DC;
+    color: white;
+}
+.selected {
+    background-color: #CFD8DC;
+    color: white;
+}
+.landen li { 
+    list-style-type: none; 
+   } 
+   

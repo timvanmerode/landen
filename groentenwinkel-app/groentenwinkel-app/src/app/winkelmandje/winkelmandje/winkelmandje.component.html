@@ -1,0 +1,32 @@
+<h1>Bestelformulier</h1>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="Winkel">Winkel: </label>
+        <select class="form-control" id="winkel" name="winkel" formControlName="winkel" required>
+            <option *ngFor="let winkel of winkellijst" value="{{winkel.id}}">{{winkel.naam}}</option>
+        </select>
+
+        <label for="Groente">Groente: </label>
+        <select class="form-control" id="groente" name="groente" formControlName="groente" required>
+            <option *ngFor="let groente of groentenlijst" value={{groente.id}}>{{groente.naam}} ({{groente.prijs}}/{{groente.eenheid}})</option>
+        </select>
+
+        <label for="Aantal">Aantal: </label>
+        <input type="text" id="aantal" name="aantal" formControlName="aantal"/>
+        <span>{{errorMessage}}</span>
+    </div>
+    <button type="submit" [disabled]="!myForm.valid" class="btn btn-success">Bestel</button>
+</form>
+
+<h2>Winkelmandje</h2>
+
+<ul>
+    <li>
+        <button (click)="wisselCurrency()">{{huidigeCurrency}}</button>
+    </li>
+    <li *ngFor="let gdc of winkelmandje">
+        <app-groente-details [winkel]='gdc.winkel' [groente]='gdc.groente' [bestelaantal]='gdc.bestelaantal'></app-groente-details>
+    </li>
+</ul>
+
+<div>{{totaal}} {{huidigeCurrency}}</div>
